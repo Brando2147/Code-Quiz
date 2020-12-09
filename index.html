@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="script.js"></script>
-    <link type="text/css" rel="stylesheet" href="clock_assets/flipclock.css" />
 </head>
 
 <body>
@@ -18,16 +16,14 @@
 
         <!-- Navbar List -->
         <nav class="navbar-nav">
-            <a class="nav-link " href="#" id="home"> Home </a>
+            <a class="nav-link text-light " href="#" id="home"> Home </a>
 
-            <a class="nav-link" href="#">Scoreboard</a>
+            <a class="nav-link text-light" href="#">Scoreboard</a>
         </nav>
     </nav>
 
-    <div class="timer">
-        <div id="minutes">25</div>
-        <div id="seconds">00</div>
-    </div>
+    <div id="minutes"></div>
+    <div id="seconds"></div>
 
     <div class="container ">
         <section id="landing">
@@ -36,22 +32,48 @@
                     <div class="card text-white bg-dark justify-content-center">
                         <div class="card-header">
                             <h1>JavaScript Code Quiz</h1>
+                            <div id="final"></div>
+                            <h2 id="h2"></h2>
                         </div>
 
                         <div class="card-body">
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
+                            <p class="card-text">This is a Javascript quiz to test your knowledge. You will be given 5
+                                minutes for the quiz. For every wrong answer you will lose 1 minutes from the clock.
+                                Please feel free to add your name to the scoreboard </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="timer">
-            <span id="minutes">
-            </span>
-            <span id="seconds">
-            </span>
+
+        <div id="questions">
+
+            <div class="qCard">
+                <div class="card text-white bg-dark justify-content-center">
+                    <div class="card-header">
+                        <h1 class="question-number">JavaScript Code Quiz</h1>
+                    </div>
+                    <div class="card-body">
+                        <p class="question-text">
+                        </p>
+                        <div class="col">
+                            <div id="choices">
+                                <button id="ChoiceA" class="btn btn-light"><span id="optA"></span></button>
+                                <button id="ChoiceB" class="btn btn-light"><span id="optB"></span></button>
+                                <button id="ChoiceC" class="btn btn-light"><span id="optC"></span></button>
+                                <button id="ChoiceD" class="btn btn-light"><span id="optD"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <section id="timer">
+                <div id="minutes">
+                    <div id="seconds">
+                    </div>
+                </div>
+        </div>
         </section>
         <div class="buttons">
             <button id="begin" class="btn btn-dark"> Begin Quiz</button>
@@ -61,5 +83,6 @@
 
 
 </body>
+<script src="script.js"></script>
 
 </html>

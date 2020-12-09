@@ -18,7 +18,29 @@ body {
        margin-top: 75px; 
     }
 
+    #choices {
 
+        display: flex;
+        flex-direction: column;
+          
+    }
+
+    .btn {
+    height: 50px;
+    
+    }
+
+    #minutes, #seconds {
+        display: flex;
+        justify-content: center;
+        font-size: 4em;
+        float: left;
+    }
+
+    #minutes {
+        margin-left: 20px;
+    }
+     
 
     #main {
     width: 80%;
@@ -34,6 +56,29 @@ body {
         height: 600px;
         
     }
+
+    .landing-header {
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .landing-text {
+        font-size: 24px;
+        text-align: center;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+
+    .card-header {
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .card-text {
+        font-size: 24px;
+        text-align: center;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+    
     
 
     button {

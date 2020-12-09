@@ -3,136 +3,201 @@ $(document).ready(function () {
 
 
     // Selecting elements 
-    var minutesDisplay = document.querySelector("#minutes");
     var secondsDisplay = document.querySelector("#seconds");
     var beginBtn = document.getElementById("begin");
     var landing = document.getElementById("landing");
-    var questions = document.getElementById("questions")
-    var nextQuestion = document.getElementById("next")
-    var home = document.getElementById("home")
+    var home = document.getElementById("home");
+    var choices = document.getElementById("choices");
+    var questionNumber = document.querySelector(".question-number");
+    var choiceA = document.getElementById("ChoiceA");
+    var choiceB = document.getElementById("ChoiceB");
+    var choiceC = document.getElementById("ChoiceC");
+    var choiceD = document.getElementById("ChoiceD");
+    var optA = document.getElementById("optA")
+    var optB = document.getElementById("optB")
+    var optC = document.getElementById("optC")
+    var optD = document.getElementById("optD")
+    var qCard = document.querySelector(".qCard");
+    var final = document.getElementById("final");
+    var h2 = document.getElementById("h2");
+    qCard.setAttribute("style", "display:none");
+
 
 
 
     // Declaring global variables 
     var totalSeconds = 0;
     var secondsElapsed = 0;
+    var currentQuestion = 0;
+    var userScore = 0;
     var interval;
 
-    let choicesArr = [];
+
+
     let quizQuestions = [
         {
-            question: "",
-            choice: ["", "", "", ""],
-            answer: ""
+            number: "Question #1",
+            question: "Which of the following IS NOT a built in Javascript function",
+            choices: [".trim()", ".double()", ".slice()", ".join()"],
+            answer: ".double()"
 
         },
         {
-            question: "",
-            options: ["", "", "", ""],
-            answer: ""
+            number: "Question #2",
+            question: "Which statement would you use to check for specific conditions in Javascript?",
+            choices: ["Switch", "For", "Select", "If"],
+            answer: "If"
 
         },
         {
-            question: "",
-            options: ["", "", "", ""],
-            answer: ""
+            number: "Question #3",
+            question: "What Javascript keyword is used to declare a variable?",
+            choices: ["let", "create", "for", "if"],
+            answer: "let"
         },
         {
-            question: "",
-            options: ["", "", "", ""],
-            answer: ""
+            number: "Question #4",
+            question: "What syntax is used when invoking a function?",
+            choices: ["[]", "{}", "()", "None"],
+            answer: "()"
 
         },
         {
-            question: "",
-            options: ["", "", "", ""],
-            answer: ""
+            number: "Question #5",
+            question: "Which symbol is NOT used in logical operations?",
+            choices: ["&&", "||", "!", "%"],
+            answer: "%"
 
         }];
 
 
 
+    // Retrive questions 
+    function getQuestion() {
 
-    // Start timer countdown 
-
-    function startTimer() {
-        setTime();
-
-        if (totalSeconds > 0) {
-
-            interval = setInterval(function () {
-                secondsElapsed++;
-
-                renderTime();
-            }, 1000);
-        } else {
-            alert("Minutes of work/rest must be greater than 0.")
-        }
-    }
-
-
-    // Set timer 
-    function setTime() {
-        var minutes;
-
-        if (status === "Working") {
-            minutes = workMinutesInput.value.trim();
-        } else {
-            minutes = restMinutesInput.value.trim();
-        }
-
-        clearInterval(interval);
-        totalSeconds = minutes * 60;
+        $(".question-number").text(quizQuestions[currentQuestion].number)
+        $(".question-text").text(quizQuestions[currentQuestion].question)
+        $('#ChoiceA').text(quizQuestions[currentQuestion].choices[0])
+        $('#ChoiceB').text(quizQuestions[currentQuestion].choices[1])
+        $('#ChoiceC').text(quizQuestions[currentQuestion].choices[2])
+        $('#ChoiceD').text(quizQuestions[currentQuestion].choices[3])
     }
 
 
 
-
-
-
-    function renderTime() {
-        // When renderTime is called it sets the textContent for the timer html...
-        minutesDisplay.textContent = getFormattedMinutes();
-        secondsDisplay.textContent = getFormattedSeconds();
-
-        // ..and then checks to see if the time has run out
-        if (secondsElapsed >= totalSeconds) {
-            if (status === "Working") {
-                alert("Time for a break!");
-            } else {
-                alert("Time to get back to work!");
-            }
-
-            stopTimer();
-        }
-    }
-
-
-
-    beginBtn.addEventListener("click", startQuiz)
 
     // Begin button to Display the questions
-    function startQuiz() {
-        $("#landing").hide();
-        $("#begin").hide();
-        $("#questions").show();
+    function startTest() {
+        landing.setAttribute("style", "display:none");
+        beginBtn.setAttribute("style", "display:none");
+        qCard.setAttribute("style", "display:inline");
+
+        startTimer();
+        getQuestion();
     }
 
 
 
-    home.addEventListener("click", home)
+    // Gets next question after making a selection
+    choices.addEventListener("click", function () {
+        currentQuestion++;
+        getQuestion();
+        validateAnswers();
+    })
 
-    // Home button to restart quiz 
-    function home() {
-        $("#landing").show();
-        $("#questions").hide();
 
+
+    // Validating questions 
+    function validateAnswers() {
+
+        document.getElementById("ChoiceA").addEventListener("click", function () {
+
+            if (quizQuestions[currentQuestion].answer === optA) {
+                userScore++;
+            } else {
+                secondsElapsed += 10;
+            }
+        })
+
+
+        document.getElementById("ChoiceB").addEventListener("click", function () {
+
+            if (quizQuestions[currentQuestion].answer === optB) {
+                userScore++;
+            } else {
+                secondsElapsed += 10;
+            }
+        })
+
+
+        document.getElementById("ChoiceC").addEventListener("click", function () {
+
+            if (quizQuestions[currentQuestion].answer === optC) {
+                userScore++;
+            } else {
+                secondsElapsed += 10
+            }
+        })
+
+        document.getElementById("ChoiceD").addEventListener("click", function () {
+            if (quizQuestions[currentQuestion].answer === optD) {
+                userScore++;
+            } else {
+                secondsElapsed += 10
+            }
+        })
+
+
+    }
+
+
+
+    // Creates countdown interval with timer 
+    function startTimer() {
+        clearInterval(interval)
+
+
+        interval = setInterval(everySecond, 1000);
+    }
+
+
+    // Interval by a second 
+    function everySecond() {
+        secondsElapsed++;
+        renderTime();
+    }
+
+
+    // Sets time to 60 seconds 
+    function renderTime() {
+        var secondsLeft = 60 - secondsElapsed;
+
+        if (secondsLeft < 1 || currentQuestion > 5) {
+            clearInterval(interval)
+            qCard.setAttribute("style", "display:none");
+            secondsDisplay.setAttribute("style", "display:none");
+            landing.setAttribute("style", "display:none");
+
+        }
+
+
+        secondsDisplay.textContent = secondsLeft;
+
+    }
+
+
+    // Ends the timer 
+    function stopTime() {
+        clearInterval(interval);
     }
 
 
 
 
 
+
+    beginBtn.addEventListener("click", startTest);
 
 
 })
+
