@@ -8,6 +8,7 @@ For this assignment I built a simple code quiz.It is timed at 60 seconds. This s
 
 ![QuestionPage](https://github.com/Brando2147/Code-Quiz/blob/main/Assets/QuestionPage.png)
 
+This site is hosted by GitHub pages. 
 
 [GitHub] (https://brando2147.github.io/Code-Quiz/) 
 
