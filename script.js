@@ -20,6 +20,7 @@ $(document).ready(function () {
     var qCard = document.querySelector(".qCard");
     var final = document.getElementById("final");
     var h2 = document.getElementById("h2");
+    var home = document.getElementById("home");
     qCard.setAttribute("style", "display:none");
 
 
@@ -69,6 +70,15 @@ $(document).ready(function () {
             answer: "%"
 
         }];
+
+
+    // Home function 
+    function goHome() {
+        landing.setAttribute("style", "display:inline")
+        qCard.setAttribute("style", "display:none");
+        beginBtn.setAttribute("style", "display:inline");
+        secondsDisplay.setAttribute("style", "display:none")
+    }
 
 
 
@@ -197,6 +207,7 @@ $(document).ready(function () {
 
 
     beginBtn.addEventListener("click", startTest);
+    home.addEventListener("click", goHome)
 
 
 })

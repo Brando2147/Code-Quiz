@@ -1,5 +1,5 @@
 body {
-    /* background-image: url(/Assets/CodeBackground.jfif); */
+    background-image: url(/Assets/CodeBackground.jfif);
     background-color: gray;
     font-family: Helvetica;
     }
@@ -35,6 +35,7 @@ body {
         justify-content: center;
         font-size: 4em;
         float: left;
+        color: white;
     }
 
     #minutes {
